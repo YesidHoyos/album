@@ -18,7 +18,7 @@ import com.woloxgram.album.util.exception.AlbumRestClientException;
 public class ExceptionController extends ResponseEntityExceptionHandler {
 	
 	@ExceptionHandler(value = {AlbumRestClientException.class})
-	public ResponseEntity<Object> userRestClientException(AlbumRestClientException excepcion, WebRequest request) {
+	public ResponseEntity<Object> albumRestClientException(AlbumRestClientException excepcion, WebRequest request) {
 		Map<String, String> response = new HashMap<>();
 		response.put("message", excepcion.getMessage());
 		response.put("cause", excepcion.getCause().getMessage());
