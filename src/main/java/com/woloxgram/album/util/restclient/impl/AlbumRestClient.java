@@ -19,7 +19,7 @@ public class AlbumRestClient implements IAlbumRestClient {
 
 	private static final String FIND_ALL_URL = "https://jsonplaceholder.typicode.com/albums";
 	private static final String FIND_ALBUMS_ERROR = "Ocurrió un error al momento de consumir los datos de todos los albumes";
-	private static final String FIND_BY_USER_URL = "https://jsonplaceholder.typicode.com/users/%s/albums";
+	private static final String FIND_BY_USER_URL = "https://jsonplaceholder.typicode.com/albums?userId=%s";
 	private static final String FIND_BY_USER_ERROR = "Ocurrió un error al momento de consumir los datos de los albumes del usuario con id %s";
 	
 	private RestTemplate restTemplate;
@@ -52,11 +52,11 @@ public class AlbumRestClient implements IAlbumRestClient {
 			response = restTemplate.
 					exchange(String.format(FIND_BY_USER_URL, userId), HttpMethod.GET, null, new ParameterizedTypeReference<List<Album>>(){});
 		} catch (RestClientException e) {
-			throw new AlbumRestClientException(FIND_BY_USER_ERROR, e);
+			throw new AlbumRestClientException(String.format(FIND_BY_USER_ERROR, userId), e);
 		}
 		
 		if(response.getStatusCode() != HttpStatus.OK) {
-			throw new AlbumRestClientException(FIND_BY_USER_ERROR);
+			throw new AlbumRestClientException(String.format(FIND_BY_USER_ERROR, userId));
 		}
 		
 		return response.getBody();
