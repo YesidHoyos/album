@@ -40,7 +40,7 @@ class AlbumServiceTest {
 		when(albumRestClient.getAllAlbums()).thenReturn(albumsExpected);
 		
 		//act
-		List<Album> albums = albumRestClient.getAllAlbums();
+		List<Album> albums = albumService.getAllAlbums();
 		
 		//assert
 		Assertions.assertTrue(albums.contains(album));
@@ -53,7 +53,7 @@ class AlbumServiceTest {
 		
 		//act
 		try {
-			albumRestClient.getAllAlbums();
+			albumService.getAllAlbums();
 			fail();
 		} catch (Exception e) {
 			//assert
@@ -70,7 +70,7 @@ class AlbumServiceTest {
 		when(albumRestClient.getAlbumsByUser(ArgumentMatchers.anyLong())).thenReturn(albumsExpected);
 		
 		//act
-		List<Album> albums = albumRestClient.getAlbumsByUser(1L);
+		List<Album> albums = albumService.getAlbumsByUser(1L);
 		
 		//assert
 		Assertions.assertTrue(albums.contains(album));
@@ -83,7 +83,7 @@ class AlbumServiceTest {
 		
 		//act
 		try {
-			albumRestClient.getAlbumsByUser(1L);
+			albumService.getAlbumsByUser(1L);
 			fail();
 		} catch (Exception e) {
 			//assert
