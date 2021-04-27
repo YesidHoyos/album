@@ -13,12 +13,13 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.woloxgram.album.util.exception.AlbumRestClientException;
+import com.woloxgram.album.util.exception.PhotoRestClientException;
 
 @ControllerAdvice
 public class ExceptionController extends ResponseEntityExceptionHandler {
 	
-	@ExceptionHandler(value = {AlbumRestClientException.class})
-	public ResponseEntity<Object> albumRestClientException(AlbumRestClientException excepcion, WebRequest request) {
+	@ExceptionHandler(value = {AlbumRestClientException.class, PhotoRestClientException.class})
+	public ResponseEntity<Object> restClientException(RuntimeException excepcion, WebRequest request) {
 		Map<String, String> response = new HashMap<>();
 		response.put("message", excepcion.getMessage());
 		response.put("cause", excepcion.getCause().getMessage());

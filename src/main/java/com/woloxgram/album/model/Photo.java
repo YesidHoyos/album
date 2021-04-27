@@ -1,8 +1,13 @@
 package com.woloxgram.album.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
+@JsonInclude(Include.NON_NULL)
 public class Photo {
 
 	private long id;
+	private long albumId;
 	private Album album;
 	private String title;
 	private String url;
@@ -10,8 +15,9 @@ public class Photo {
 	
 	public Photo() {}
 
-	public Photo(long id, Album album, String title, String url, String thumbnailUrl) {
+	public Photo(long id, long albumId, Album album, String title, String url, String thumbnailUrl) {
 		this.id = id;
+		this.albumId = albumId;
 		this.album = album;
 		this.title = title;
 		this.url = url;
@@ -56,5 +62,13 @@ public class Photo {
 
 	public void setThumbnailUrl(String thumbnailUrl) {
 		this.thumbnailUrl = thumbnailUrl;
+	}
+
+	public long getAlbumId() {
+		return albumId;
+	}
+
+	public void setAlbumId(long albumId) {
+		this.albumId = albumId;
 	}		
 }
