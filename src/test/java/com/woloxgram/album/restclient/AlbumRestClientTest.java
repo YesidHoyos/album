@@ -110,7 +110,7 @@ class AlbumRestClientTest {
 			fail();
 		} catch (Exception e) {
 			//assert
-			Assertions.assertEquals(FIND_BY_USER_ERROR, e.getMessage());
+			Assertions.assertEquals(String.format(FIND_BY_USER_ERROR, 1), e.getMessage());
 		}		
 	}
 }
